@@ -1,0 +1,12 @@
+# Host website within ubuntu image based container
+> sudo docker run --name webserver -p 80:80 -it ubuntu /bin/bash
+   # within container installwebserver(ngnix or apache2) and add website
+   > apt update
+   > apt install apache2 -y
+   > service apache2 status
+   > service apache2 start
+   > service apache2 stop
+   > apt install git -y
+
+   > git clone https://github.com/wahidKhan74/phase4-bootstrap-website.git
+   > cp -r phase4-bootstrap-website/* /var/www/html

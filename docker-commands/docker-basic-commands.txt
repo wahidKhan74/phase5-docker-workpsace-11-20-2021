@@ -1,0 +1,20 @@
+# list docker container
+> sudo docker container ls
+> sudo docker ps -a
+
+# list docker image
+> sudo docker images
+
+# list docker volume
+> sudo docker volume ls
+
+
+# pull docker image from docker hub
+> sudo docker pull ubuntu
+> sudo docker pull ubuntu:tag
+> sudo docker pull alpine
+> sudo docker pull mysql
+> sudo docker pull openjdk
+
+# create / run a container
+> sudo docker run -it ubuntu /bin/bash

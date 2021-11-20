@@ -1,0 +1,29 @@
+# Docker file : A Dockerfile is a text document which contains all the commands 
+# that a user can call on the command line to assemble an image.
+
+step 1: create a docker file
+
+step 2: docker build image
+> sudo docker build -t phpcode -f Dockerfile / filepath
+> sudo docker build -t phpcode .
+
+step 3: verify build images
+> sudo docker images
+
+step 4: start/ run container from custom docker image
+> sudo docker run --name phpserver -p 80:80 -d phpcode
+
+-----------------------------------------------------------------------
+# Docker image build for spring boot project
+-----------------------------------------------------------------------
+step 1: create a docker file
+
+step 2: docker build image
+> sudo docker build -t ecom-webservice -f Dockerfile / filepath
+> sudo docker build -t ecom-webservice .
+
+step 3: verify build images
+> sudo docker images
+
+step 4: start/ run container from custom docker image
+> sudo docker run --name ecom-server -p 8080:8081 -d ecom-webservice
