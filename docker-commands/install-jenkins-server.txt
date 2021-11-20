@@ -1,0 +1,29 @@
+# Jenkins install in ubuntu
+# linux : https://www.jenkins.io/doc/book/installing/linux/
+# Mac : https://www.jenkins.io/download/lts/macos/
+# Windows : https://www.jenkins.io/doc/book/installing/windows/
+
+# jdk install
+> sudo apt install default-jdk -y
+
+# maven install 
+> sudo apt install maven -y
+
+# Jenkins install in ubuntu
+> curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+> echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+> sudo apt-get update
+> sudo apt-get install jenkins -y
+
+
+# verify jenkins status
+> sudo service jenkins status
+
+# start jenkibns server
+> sudo service jenkins start
+
+# stop jenkibns server
+> sudo service jenkins stop
+
+# restart jenkibns server
+> sudo service jenkins restart
