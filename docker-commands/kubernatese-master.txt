@@ -1,0 +1,35 @@
+# Create a master node  -> on Ec2  -> ubuntu 20.0.4
+1) install docker   -> use docker install file.
+2) install kubernatese  -> kubernetes instal file.
+3) disabling swapp   ->
+        > sudo swapoff -a
+        > sudo sed -i '/ swap / s/^/#/' /etc/fstab
+5) adding cgroup     -> 
+        > sudo vim  /etc/docker/daemon.json
+                {
+                    "exec-opts": ["native.cgroupdriver=systemd"]
+                }
+        > sudo systemctl daemon-reload
+        > sudo systemctl restart docker
+        > sudo systemctl restart kubelet
+        > sudo docker info |grep -i cgroup
+6) Assign unique hostname
+        > sudo hostnamectl set-hostname master-node
+7) Reboot instance.
+
+8) Start a kubernatese master (Initialize Kubernetes on Master Node) 
+        > sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+9) Add kubernatese master node config
+        > mkdir -p $HOME/.kube
+        > sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        > sudo chown $(id -u):$(id -g) $HOME/.kube/config
+10)Apply a pod newtwork to the cluster
+        > export kubever=$(kubectl version | base64 | tr -d '\n')
+        > kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+
+11) Verify that everything is running and communicating
+        >  kubectl get pods --all-namespaces
+12) After joining noe :: list nodes 
+        > kubectl get nodes
+
+

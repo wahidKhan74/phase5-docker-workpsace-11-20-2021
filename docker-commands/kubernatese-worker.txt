@@ -1,0 +1,21 @@
+# Create a worker node  -> on Ec2  -> ubuntu 20.0.4
+1) install docker   -> use docker install file.
+2) install kubernatese  -> kubernetes instal file.
+3) disabling swapp   ->
+        > sudo swapoff -a
+        > sudo sed -i '/ swap / s/^/#/' /etc/fstab
+5) adding cgroup     -> 
+        > sudo vim  /etc/docker/daemon.json
+                {
+                    "exec-opts": ["native.cgroupdriver=systemd"]
+                }
+        > sudo systemctl daemon-reload
+        > sudo systemctl restart docker
+        > sudo systemctl restart kubelet
+        > sudo docker info |grep -i cgroup
+6) Assign unique hostname
+        > sudo hostnamectl set-hostname worker01
+7) Reboot instance.
+
+8) Join a kubernatese worker node
+        > sudo kubeadm join 172.31.29.202:6443 --token 37lx9f.5amgyxxbdy0lv2rw --discovery-token-ca-cert-hash sha256:723f430fb86d489aced45fdec1a350adb1dd8b4d889751a541bea3cc68c029fe
